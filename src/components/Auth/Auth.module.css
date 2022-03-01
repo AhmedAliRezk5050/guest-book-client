@@ -55,6 +55,7 @@
   padding: 1rem 2rem;
   cursor: pointer;
   color: var(--color-1);
+  background-color: var(--color-10);
 }
 
 .formErrors {
@@ -74,4 +75,24 @@
   color: black;
   font-size: 1.3rem;
   font-weight: 500;
+}
+
+.btnGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.switchBtn {
+  margin-top: 2rem;
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  color: var(--color-10);
+  background-color: transparent;
 }

@@ -36,6 +36,28 @@ const Auth = () => {
     }
   };
 
+  const login = async (username, email, password) => {
+    try {
+      const { userData, errors } = await guestBookApi.login(
+        username,
+        email,
+        password,
+      );
+
+      console.log(userData, errors);
+      if (errors) {
+        setFormErrors((prevState) => [...prevState, ...errors]);
+      } else {
+        dispatch({ type: 'SET_USER', payload: userData });
+        localStorage.setItem('userData', JSON.stringify(userData));
+        console.log('localStorage', localStorage.getItem('userData'));
+      }
+    } catch (error) {
+      console.log('error -------------- ', error);
+      setFormErrors((prevState) => [...prevState, 'Failed to login']);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSuccessMessage(null);
@@ -60,9 +82,12 @@ const Auth = () => {
     if (registerMode) {
       await register(username, email, password);
       setLoading(false);
-      if (formErrors.length !== 0) {
+      if (formErrors.length === 0) {
         setSuccessMessage('Registered successfully, please login');
       }
+    } else {
+      await login(username, email, password);
+      setLoading(false);
     }
   };
 
@@ -122,9 +147,19 @@ const Auth = () => {
             ref={passwordRef}
           />
         </div>
-        <div className={styles.formGroup}>
-          <button className={styles.btn}>Register</button>
+        <div className={styles.btnGroup}>
+          <button className={styles.btn} type='submit'>
+            {registerMode ? 'Register' : 'Login'}
+          </button>
+          <button
+            className={styles.switchBtn}
+            type='button'
+            onClick={() => setRegisterMode((prevState) => !prevState)}
+          >
+            Switch to {registerMode ? 'Login' : 'Register'}
+          </button>
         </div>
+        <div className={styles.formGroup}></div>
       </form>
     </div>
   );
