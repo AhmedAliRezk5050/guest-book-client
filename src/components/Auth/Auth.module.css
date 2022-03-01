@@ -1,0 +1,71 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+  background-color: var(--color-3);
+  padding: 2rem 1rem;
+  margin-bottom: 3rem;
+  color: var(--color-10);
+  gap: 2rem;
+  border-radius: 0.3rem;
+}
+
+.title {
+  font-size: 1.7rem;
+}
+
+.subtitle {
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.formInput {
+  font-family: inherit;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  font-weight: 500;
+  min-width: 25rem;
+}
+
+.btn {
+  margin-top: 2rem;
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  color: var(--color-1);
+}
+
+.formErrors {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-10);
+  color: var(--color-3);
+  font-size: 1.5rem;
+  padding: 1rem;
+  /* margin: 1rem 0; */
+  width: 100%;
+  gap: 1rem;
+}

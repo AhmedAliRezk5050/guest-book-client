@@ -2,6 +2,7 @@ import './App.css';
 import { useEffect } from 'react';
 import guestBookApi from './api/guest-book';
 import Banner from './components/Banner/Banner';
+import Auth from './components/Auth/Auth';
 
 function App() {
   useEffect(() => {
@@ -112,6 +113,7 @@ function App() {
   return (
     <main className='main'>
       <Banner />
+      <Auth />
     </main>
   );
 }
