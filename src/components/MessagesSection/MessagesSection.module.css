@@ -1,0 +1,12 @@
+.MessagesSection {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.7rem;
+  color: var(--color-1);
+}

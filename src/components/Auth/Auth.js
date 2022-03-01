@@ -48,9 +48,7 @@ const Auth = () => {
       if (errors) {
         setFormErrors((prevState) => [...prevState, ...errors]);
       } else {
-        dispatch({ type: 'SET_USER', payload: userData });
-        localStorage.setItem('userData', JSON.stringify(userData));
-        console.log('localStorage', localStorage.getItem('userData'));
+        return userData;
       }
     } catch (error) {
       console.log('error -------------- ', error);
@@ -86,8 +84,13 @@ const Auth = () => {
         setSuccessMessage('Registered successfully, please login');
       }
     } else {
-      await login(username, email, password);
+      const userData = await login(username, email, password);
       setLoading(false);
+      if (userData) {
+        dispatch({ type: 'SET_USER', payload: userData });
+        localStorage.setItem('userData', JSON.stringify(userData));
+        console.log('localStorage', localStorage.getItem('userData'));
+      }
     }
   };
 

@@ -47,5 +47,5 @@ export const validateUser = (userData) => {
   return validationErrors;
 };
 
-const protectedTrimString = (value) =>
+export const protectedTrimString = (value) =>
   value && typeof value === 'string' ? value.trim() : value;

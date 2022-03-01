@@ -3,50 +3,10 @@ import { useEffect } from 'react';
 import guestBookApi from './api/guest-book';
 import Main from './components/Main/Main';
 import AuthProvider from './context/auth/AuthProvider';
+import MessagesProvider from './context/auth/MessagesProvider';
 
 function App() {
   useEffect(() => {
-    const register = async () => {
-      try {
-        const { userId, errors } = await guestBookApi.register(
-          'zzogrdiano',
-          'ahmedalirezk50@gmail.com',
-          '12345678Ae@',
-        );
-
-        console.log(userId, errors);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    // s
-    const login = async () => {
-      try {
-        const { userData, errors } = await guestBookApi.login(
-          'zzogrdianoss',
-          'ahme0@gmail.com',
-          '12345678Ae@',
-        );
-
-        console.log(userData, errors);
-      } catch (error) {
-        console.log('error -------------- ', error);
-      }
-    };
-    // s
-    const fetchMessages = async () => {
-      try {
-        const { messages, errors } = await guestBookApi.fetchMessages(
-          'zzogrdianoss',
-          'ahme0@gmail.com',
-          '12345678Ae@',
-        );
-
-        console.log(messages, errors);
-      } catch (error) {
-        console.log('error -------------- ', error);
-      }
-    };
     // fetchMessages();
     // s
     const fetchMessage = async (id) => {
@@ -60,19 +20,6 @@ function App() {
     };
     // s
     // s
-
-    const createMessage = async (username, content) => {
-      try {
-        const { newMessageId, errors } = await guestBookApi.createMessage(
-          username,
-          content,
-        );
-
-        console.log(newMessageId, errors);
-      } catch (error) {
-        console.log('error -------------- ', error);
-      }
-    };
 
     // s
     // s
@@ -113,7 +60,9 @@ function App() {
 
   return (
     <AuthProvider>
-      <Main />
+      <MessagesProvider>
+        <Main />
+      </MessagesProvider>
     </AuthProvider>
   );
 }

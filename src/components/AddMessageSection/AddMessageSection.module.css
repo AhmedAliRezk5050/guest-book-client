@@ -1,0 +1,45 @@
+.AddMessageSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+}
+
+.title {
+  font-size: 1.7rem;
+  color: var(--color-1);
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  color: var(--color-1);
+  background-color: var(--color-10);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.formInput {
+  font-family: inherit;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  font-weight: 500;
+  min-width: 25rem;
+}
+
+.btnWrapper {
+  text-align: center;
+}
