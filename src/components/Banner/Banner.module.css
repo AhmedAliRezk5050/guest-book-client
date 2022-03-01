@@ -1,0 +1,44 @@
+.header {
+  min-height: 50vh;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+.imgWrapper {
+  height: 75%;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.title {
+  font-family: var(--font-2);
+  font-size: 3rem;
+  text-align: center;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  color: var(--color-3);
+}
+
+.subtitle {
+  font-size: 3rem;
+}
+
+@media (min-width: 34.375em) {
+  .title {
+    font-size: 5rem;
+  }
+  .subtitle {
+    font-size: 3rem;
+  }
+}

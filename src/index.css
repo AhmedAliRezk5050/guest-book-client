@@ -1,13 +1,43 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-size: 62.5%;
 }
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.6;
+  height: 100vh;
+  background-color: var(--color-4);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:root {
+  --color-1: #590d22;
+  --color-2: #800f2f;
+  --color-3: #a4133c;
+  --color-4: #c9184a;
+  --color-5: #ff4d6d;
+  --color-6: #ff758f;
+  --color-7: #ff8fa3;
+  --color-8: #ffb3c1;
+  --color-9: #ffccd5;
+  --color-10: #fff0f3;
+  --font-1: 'Raleway', sans-serif;
+  --font-2: 'Dancing Script', cursive;
+  --font-3: 'Shadows Into Light', cursive;
+}
+
+/* font-family: 'Dancing Script', cursive;
+  font-family: 'Raleway', sans-serif;
+  font-family: 'Shadows Into Light', cursive; */
