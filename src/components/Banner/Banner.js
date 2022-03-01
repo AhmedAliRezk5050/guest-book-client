@@ -2,7 +2,6 @@ import styles from './Banner.module.css';
 import proposalImg from './proposal.jpg';
 
 const Banner = () => {
-  console.log(proposalImg);
   return (
     <header className={styles.header}>
       <div className={styles.imgWrapper}>

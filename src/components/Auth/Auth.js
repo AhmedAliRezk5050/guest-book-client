@@ -2,9 +2,12 @@ import { useRef, useState } from 'react';
 import { validateUser } from '../../helpers/validation';
 import styles from './Auth.module.css';
 
+import guestBookApi from '../../api/guest-book';
+import { useAuthContext } from '../../context/auth/AuthProvider';
+
 const Auth = () => {
   const usernameRef = useRef();
-
+  const { state, dispatch } = useAuthContext();
   const emailRef = useRef();
 
   const passwordRef = useRef();
@@ -13,22 +16,54 @@ const Auth = () => {
 
   const [registerMode, setRegisterMode] = useState(true);
 
+  const [loading, setLoading] = useState(false);
+
+  const [successMessage, setSuccessMessage] = useState(null);
+
+  const register = async (username, email, password) => {
+    try {
+      const { userId, errors } = await guestBookApi.register(
+        username,
+        email,
+        password,
+      );
+      if (errors) {
+        setFormErrors((prevState) => [...prevState, ...errors]);
+      }
+    } catch (error) {
+      console.log(error);
+      setFormErrors((prevState) => [...prevState, 'Failed to register']);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSuccessMessage(null);
+    setLoading(true);
+
     const username = usernameRef.current.value;
+
     const email = emailRef.current.value;
+
     const password = passwordRef.current.value;
 
     const errors = validateUser({ username, email, password });
-    console.log(errors);
+
     if (errors.length > 0) {
       setFormErrors(errors);
+      setLoading(false);
       return;
     } else {
       setFormErrors([]);
     }
 
-    // s
+    if (registerMode) {
+      await register(username, email, password);
+      setLoading(false);
+      if (formErrors.length !== 0) {
+        setSuccessMessage('Registered successfully, please login');
+      }
+    }
   };
 
   const renderFormErrors = () => {
@@ -43,6 +78,10 @@ const Auth = () => {
     );
   };
 
+  const renderOperationsStatus = () => loading && <p>loading</p>;
+  const renderSuccessMessage = () =>
+    successMessage && <p className={styles.success}>{successMessage}</p>;
+
   return (
     <div className={styles.auth}>
       <h2 className={styles.title}>
@@ -50,6 +89,8 @@ const Auth = () => {
         <span>to leave a message</span>
       </h2>
       <form className={styles.form} onSubmit={handleSubmit}>
+        {renderSuccessMessage()}
+        {renderOperationsStatus()}
         {renderFormErrors()}
         <div className={styles.formGroup}>
           <label htmlFor='username'>Username</label>

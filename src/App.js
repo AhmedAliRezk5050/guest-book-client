@@ -1,8 +1,8 @@
 import './App.css';
 import { useEffect } from 'react';
 import guestBookApi from './api/guest-book';
-import Banner from './components/Banner/Banner';
-import Auth from './components/Auth/Auth';
+import Main from './components/Main/Main';
+import AuthProvider from './context/auth/AuthProvider';
 
 function App() {
   useEffect(() => {
@@ -110,11 +110,11 @@ function App() {
       }
     };
   }, []);
+
   return (
-    <main className='main'>
-      <Banner />
-      <Auth />
-    </main>
+    <AuthProvider>
+      <Main />
+    </AuthProvider>
   );
 }
 

@@ -10,10 +10,10 @@ html {
 
 body {
   padding: 0;
+  padding-bottom: 3rem;
   margin: 0;
   font-family: 'Raleway', sans-serif;
   line-height: 1.6;
-  height: 100vh;
   background-color: var(--color-4);
 }
 

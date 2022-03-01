@@ -1,0 +1,18 @@
+.main {
+  width: 100%;
+  /* min-height: 100vh; */
+  background-color: var(--color-10);
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 34.375em) {
+  .main {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 48em) {
+  .main {
+    width: 70%;
+  }
+}

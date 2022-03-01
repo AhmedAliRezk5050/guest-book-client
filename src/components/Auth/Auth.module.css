@@ -69,3 +69,9 @@
   width: 100%;
   gap: 1rem;
 }
+
+.success {
+  color: black;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
