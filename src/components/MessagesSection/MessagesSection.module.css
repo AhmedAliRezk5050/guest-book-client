@@ -4,9 +4,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
 }
 
-.title {
-  font-size: 1.7rem;
-  color: var(--color-1);
+.messagesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
 }

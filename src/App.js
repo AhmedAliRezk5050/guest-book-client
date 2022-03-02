@@ -43,19 +43,6 @@ function App() {
     // );
     // s
     // s
-
-    const deleteMessage = async (messageId, username) => {
-      try {
-        const { deletedMessageId, errors } = await guestBookApi.deleteMessage(
-          messageId,
-          username,
-        );
-
-        console.log(deletedMessageId, errors);
-      } catch (error) {
-        console.log('error -------------- ', error);
-      }
-    };
   }, []);
 
   return (

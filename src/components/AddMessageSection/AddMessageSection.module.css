@@ -7,11 +7,6 @@
   padding: 3rem 0;
 }
 
-.title {
-  font-size: 1.7rem;
-  color: var(--color-1);
-}
-
 .btn {
   font-family: inherit;
   font-size: 1.5rem;
@@ -37,7 +32,7 @@
   border-radius: 0.5rem;
   padding: 1rem 0.5rem;
   font-weight: 500;
-  min-width: 25rem;
+  min-width: 30rem;
 }
 
 .btnWrapper {

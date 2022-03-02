@@ -1,0 +1,45 @@
+.Message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 25rem;
+  width: 90%;
+  gap: 1rem;
+  background-color: var(--color-9);
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-5);
+}
+
+.date {
+  font-size: 0.9rem;
+  color: var(--color-5);
+}
+
+.content {
+  font-size: 3rem;
+  font-family: var(--font-3);
+  color: var(--color-1);
+}
+
+.footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-transform: capitalize;
+  color: var(--color-4);
+}

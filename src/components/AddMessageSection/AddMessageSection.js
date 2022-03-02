@@ -1,13 +1,15 @@
 import { useRef } from 'react';
 import guestBookApi from '../../api/guest-book';
 import { useAuthContext } from '../../context/auth/AuthProvider';
+import { useMessagesContext } from '../../context/auth/MessagesProvider';
 import { protectedTrimString } from '../../helpers/validation';
 import styles from './AddMessageSection.module.css';
 
 const AddMessageSection = () => {
   const messageRef = useRef();
 
-  const { state } = useAuthContext();
+  const { state, dispatch } = useAuthContext();
+  const { messagesState, dispatch: messagesDispatch } = useMessagesContext();
 
   const createMessage = async (username, content) => {
     try {
@@ -15,13 +17,24 @@ const AddMessageSection = () => {
         username,
         content,
       );
-
-      console.log(newMessageId, errors);
+      return { newMessageId, errors };
     } catch (error) {
       console.log('error -------------- ', error);
     }
   };
+  const fetchMessages = async () => {
+    try {
+      const { messages, errors } = await guestBookApi.fetchMessages();
 
+      if (!errors) {
+        messagesDispatch({ type: 'SET_MESSAGES', payload: messages });
+      }
+
+      console.log(messages, errors);
+    } catch (error) {
+      console.log('error -------------- ', error);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,13 +50,19 @@ const AddMessageSection = () => {
       return;
     }
 
-    await createMessage(state.userData.username, message);
+    const { newMessageId, errors } = await createMessage(
+      state.userData.username,
+      message,
+    );
     messageRef.current.value = '';
+    await fetchMessages();
+    if (!errors) {
+      dispatch({ type: 'SET_MESSAGES', payload: [] });
+    }
   };
 
   return (
     <section className={styles.AddMessageSection}>
-      <h3 className={styles.title}>Add Message</h3>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
           <label htmlFor='message'>Message</label>

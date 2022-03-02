@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import guestBookApi from '../../api/guest-book';
 import { useMessagesContext } from '../../context/auth/MessagesProvider';
+import Message from '../Message/Message';
 import styles from './MessagesSection.module.css';
 
 const MessagesSection = () => {
@@ -26,7 +27,13 @@ const MessagesSection = () => {
 
   return (
     <section className={styles.MessagesSection}>
-      <h3 className={styles.title}>Messages</h3>
+      <div className={styles.messagesContainer}>
+        {state &&
+          state.messages &&
+          state.messages.map((message) => (
+            <Message key={message.id} messageInfo={message} />
+          ))}
+      </div>
     </section>
   );
 };
