@@ -6,7 +6,6 @@ import styles from './MessagesSection.module.css';
 
 const MessagesSection = () => {
   const { state, dispatch } = useMessagesContext();
-  console.log('state', state);
 
   useEffect(() => {
     const fetchMessages = async () => {

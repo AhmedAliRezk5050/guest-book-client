@@ -42,14 +42,12 @@ const Auth = () => {
         password,
       );
 
-      console.log(userData, errors);
       if (errors) {
         setFormErrors((prevState) => [...prevState, ...errors]);
       } else {
         return userData;
       }
     } catch (error) {
-      console.log('error -------------- ', error);
       setFormErrors((prevState) => [...prevState, 'Failed to login']);
     }
   };
@@ -83,7 +81,6 @@ const Auth = () => {
       if (userData) {
         dispatch({ type: 'SET_USER', payload: userData });
         localStorage.setItem('userData', JSON.stringify(userData));
-        console.log('localStorage', localStorage.getItem('userData'));
       }
     }
   };

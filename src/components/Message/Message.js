@@ -33,8 +33,6 @@ const Message = ({ messageInfo }) => {
       if (!errors) {
         dispatch({ type: 'SET_MESSAGES', payload: messages });
       }
-
-      console.log(messages, errors);
     } catch (error) {
       console.log('error -------------- ', error);
     }
@@ -92,8 +90,6 @@ const Message = ({ messageInfo }) => {
       await fetchMessages();
       setEditingMessage(false);
     }
-
-    console.log(updatedMessageId);
   };
 
   const handleReplyMessage = async (e) => {

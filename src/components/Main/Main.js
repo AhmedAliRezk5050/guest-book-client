@@ -9,7 +9,6 @@ import { useEffect } from 'react';
 
 const Main = () => {
   const { state, dispatch } = useAuthContext();
-  console.log('context ---', state);
 
   useEffect(() => {
     const userDataFromStorage = localStorage.getItem('userData');

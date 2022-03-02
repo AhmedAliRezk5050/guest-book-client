@@ -1,28 +1,30 @@
 .header {
-  min-height: 50vh;
-  height: 50vh;
+  /* min-height: 50vh; */
+  /* height: 50vh; */
   display: flex;
   flex-direction: column;
 }
 
 .imgWrapper {
-  height: 75%;
+  /* height: 75%; */
 }
 
 .img {
   width: 100%;
-  height: 100%;
+  max-height: 40rem;
+  display: block;
   object-fit: cover;
   object-position: center;
-  display: block;
 }
 
 .title {
+  padding: 2rem;
   font-family: var(--font-2);
   font-size: 3rem;
   text-align: center;
   height: 25%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
@@ -31,6 +33,12 @@
 
 .subtitle {
   font-size: 3rem;
+}
+
+@media (min-width: 31.25em) {
+  .title {
+    flex-direction: row;
+  }
 }
 
 @media (min-width: 34.375em) {
