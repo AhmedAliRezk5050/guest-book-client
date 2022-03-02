@@ -43,3 +43,28 @@
   text-transform: capitalize;
   color: var(--color-4);
 }
+
+.form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.formInput {
+  font-family: inherit;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  font-weight: 500;
+  min-width: 30rem;
+}

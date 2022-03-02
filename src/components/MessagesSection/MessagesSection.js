@@ -16,8 +16,6 @@ const MessagesSection = () => {
         if (!errors) {
           dispatch({ type: 'SET_MESSAGES', payload: messages });
         }
-
-        console.log(messages, errors);
       } catch (error) {
         console.log('error -------------- ', error);
       }

@@ -65,10 +65,9 @@ const AddMessageSection = () => {
     <section className={styles.AddMessageSection}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
-          <label htmlFor='message'>Message</label>
+          <label htmlFor='text'>Message</label>
           <textarea
-            type='message'
-            placeholder='Message'
+            placeholder='Add Message'
             id='text'
             className={styles.formInput}
             ref={messageRef}
