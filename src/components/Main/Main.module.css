@@ -5,6 +5,23 @@
   padding-bottom: 3rem;
 }
 
+.logout {
+  position: fixed;
+  display: block;
+  right: 0;
+  bottom: 1rem;
+  right: 0.5rem;
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  color: var(--color-9);
+  background-color: var(--color-5);
+}
+
 @media (min-width: 34.375em) {
   .main {
     width: 90%;

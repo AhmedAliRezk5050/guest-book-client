@@ -6,20 +6,25 @@ import { protectedTrimString } from '../../helpers/validation';
 import styles from './Message.module.css';
 
 const Message = ({ messageInfo }) => {
-  const { username, content, creationDate, id } = messageInfo;
+  const { username, content, creationDate, id, replies } = messageInfo;
 
-  const [editingMessage, setEditingMessage] = useState();
+  const [editingMessage, setEditingMessage] = useState(false);
+
+  const [replyingMessage, setReplyingMessage] = useState(false);
+
+  const [showReplies, setShowReplies] = useState(false);
 
   const { state, dispatch } = useMessagesContext();
 
   const { state: userInfo } = useAuthContext();
 
   const messageRef = useRef();
+  const replyRef = useRef();
 
-  const dateFormated =
-    new Date(creationDate).toDateString() +
-    '  ' +
-    new Date(creationDate).toLocaleTimeString();
+  const formatDate = (date) =>
+    new Date(date).toDateString() + '  ' + new Date(date).toLocaleTimeString();
+
+  const dateFormated = formatDate(creationDate);
 
   const fetchMessages = async () => {
     try {
@@ -48,12 +53,13 @@ const Message = ({ messageInfo }) => {
     }
   };
 
-  const updateMessage = async (messageId, username, content) => {
+  const updateMessage = async (messageId, username, content, reply) => {
     try {
       const { updatedMessageId, errors } = await guestBookApi.updateMessage(
         messageId,
         username,
         content,
+        reply,
       );
 
       return { updatedMessageId, errors };
@@ -72,7 +78,7 @@ const Message = ({ messageInfo }) => {
 
     const editMessage = messageRef.current.value;
 
-    if (!protectedTrimString) {
+    if (!protectedTrimString(editMessage)) {
       return;
     }
 
@@ -84,9 +90,72 @@ const Message = ({ messageInfo }) => {
 
     if (!errors) {
       await fetchMessages();
+      setEditingMessage(false);
     }
 
     console.log(updatedMessageId);
+  };
+
+  const handleReplyMessage = async (e) => {
+    e.preventDefault();
+
+    const replyMessage = replyRef.current.value;
+    const reply = {
+      username: userInfo.userData.username,
+      content: replyMessage,
+    };
+    if (!protectedTrimString(replyMessage)) {
+      return;
+    }
+
+    const { updatedMessageId, errors } = await updateMessage(
+      id,
+      username,
+      content,
+      reply,
+    );
+
+    if (!errors) {
+      await fetchMessages();
+      setReplyingMessage(false);
+    }
+
+    console.log(updatedMessageId);
+  };
+
+  const renderCancelEditBtn = () => {
+    return (
+      <button className={styles.btn} onClick={() => setEditingMessage(false)}>
+        Cancel
+      </button>
+    );
+  };
+
+  const renderCancelReplyBtn = () => {
+    return (
+      <button className={styles.btn} onClick={() => setReplyingMessage(false)}>
+        Cancel
+      </button>
+    );
+  };
+
+  const renderReplies = () => {
+    if (!showReplies) {
+      return null;
+    }
+    if (replies && replies.length > 0) {
+      return replies.map(({ id, username, content, creationDate }) => (
+        <div key={id} className={styles.reply}>
+          <div className={styles.replyHeader}>
+            <h4 className={styles.replyTitle}>{username}</h4>
+            <h5 className={styles.replySubTitle}>{formatDate(creationDate)}</h5>
+          </div>
+          <div>
+            <p className={styles.replyContent}>{content}</p>
+          </div>
+        </div>
+      ));
+    }
   };
 
   return (
@@ -99,7 +168,12 @@ const Message = ({ messageInfo }) => {
         <p className={styles.content}>{content}</p>
       </div>
       <div className={styles.footer}>
-        <button className={styles.btn}>reply</button>
+        <button
+          className={styles.btn}
+          onClick={() => setReplyingMessage((prevState) => !prevState)}
+        >
+          reply
+        </button>
 
         {userInfo.userData.username === username && (
           <>
@@ -117,22 +191,54 @@ const Message = ({ messageInfo }) => {
       </div>
       <div>
         {editingMessage && (
-          <form className={styles.form} onSubmit={handleEditMessage}>
-            <div className={styles.formGroup}>
-              <label htmlFor='text'>Message</label>
-              <input
-                type='text'
-                placeholder='Edit Message'
-                id='text'
-                className={styles.formInput}
-                ref={messageRef}
-              />
-            </div>
-            <div className={styles.btnWrapper}>
-              <button className={styles.btn}>Edit Message</button>
-            </div>
-          </form>
+          <>
+            <form className={styles.form} onSubmit={handleEditMessage}>
+              <div className={styles.formGroup}>
+                <label htmlFor='text'>Message</label>
+                <input
+                  type='edit_text'
+                  placeholder='Edit Message'
+                  id='edit_text'
+                  className={styles.formInput}
+                  ref={messageRef}
+                />
+              </div>
+              <div className={styles.btnWrapper}>
+                <button className={styles.btn}>Edit Message</button>
+              </div>
+            </form>
+            {renderCancelEditBtn()}
+          </>
         )}
+        {replyingMessage && (
+          <>
+            <form className={styles.form} onSubmit={handleReplyMessage}>
+              <div className={styles.formGroup}>
+                <label htmlFor='text'>Reply</label>
+                <input
+                  type='reply_text'
+                  placeholder='Reply'
+                  id='reply_text'
+                  className={styles.formInput}
+                  ref={replyRef}
+                />
+              </div>
+              <div className={styles.btnWrapper}>
+                <button className={styles.btn}>Reply</button>
+              </div>
+            </form>
+            {renderCancelReplyBtn()}
+          </>
+        )}
+      </div>
+      <div className={styles.repliesContainer}>
+        <button
+          className={styles.btn}
+          onClick={() => setShowReplies((prevState) => !prevState)}
+        >
+          View replies
+        </button>
+        <div className={styles.replies}>{renderReplies()}</div>
       </div>
     </div>
   );

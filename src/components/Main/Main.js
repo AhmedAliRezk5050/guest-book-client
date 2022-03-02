@@ -21,9 +21,26 @@ const Main = () => {
   return (
     <main className={styles.main}>
       <Banner />
-      {state.userData ? <AddMessageSection /> : <Auth />}
+      {state.userData && (
+        <button
+          className={styles.logout}
+          onClick={() => {
+            dispatch({ type: 'REMOVE_USER' });
+            localStorage.removeItem('userData');
+          }}
+        >
+          Logout
+        </button>
+      )}
 
-      <MessagesSection />
+      {state.userData ? (
+        <>
+          <AddMessageSection />
+          <MessagesSection />
+        </>
+      ) : (
+        <Auth />
+      )}
     </main>
   );
 };

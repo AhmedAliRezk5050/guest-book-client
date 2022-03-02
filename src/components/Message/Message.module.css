@@ -66,5 +66,28 @@
   border-radius: 0.5rem;
   padding: 1rem 0.5rem;
   font-weight: 500;
-  min-width: 30rem;
+  min-width: 25rem;
+}
+
+.replies {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.reply {
+  padding: 1rem;
+  background-color: var(--color-8);
+}
+.replyTitle {
+  font-size: 1.3rem;
+}
+
+.replySubTitle {
+}
+
+.replyContent {
 }

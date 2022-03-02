@@ -18,8 +18,6 @@ const Auth = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const [successMessage, setSuccessMessage] = useState(null);
-
   const register = async (username, email, password) => {
     try {
       const { userId, errors } = await guestBookApi.register(
@@ -58,7 +56,6 @@ const Auth = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSuccessMessage(null);
     setLoading(true);
 
     const username = usernameRef.current.value;
@@ -80,9 +77,6 @@ const Auth = () => {
     if (registerMode) {
       await register(username, email, password);
       setLoading(false);
-      if (formErrors.length === 0) {
-        setSuccessMessage('Registered successfully, please login');
-      }
     } else {
       const userData = await login(username, email, password);
       setLoading(false);
@@ -107,8 +101,6 @@ const Auth = () => {
   };
 
   const renderOperationsStatus = () => loading && <p>loading</p>;
-  const renderSuccessMessage = () =>
-    successMessage && <p className={styles.success}>{successMessage}</p>;
 
   return (
     <div className={styles.auth}>
@@ -117,7 +109,6 @@ const Auth = () => {
         <span>to leave a message</span>
       </h2>
       <form className={styles.form} onSubmit={handleSubmit}>
-        {renderSuccessMessage()}
         {renderOperationsStatus()}
         {renderFormErrors()}
         <div className={styles.formGroup}>
