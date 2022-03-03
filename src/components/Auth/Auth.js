@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { validateUser } from '../../helpers/validation';
 import styles from './Auth.module.css';
 
 import guestBookApi from '../../api/guest-book';
@@ -7,7 +6,7 @@ import { useAuthContext } from '../../context/auth/AuthProvider';
 
 const Auth = () => {
   const usernameRef = useRef();
-  const { state, dispatch } = useAuthContext();
+  const { dispatch } = useAuthContext();
   const emailRef = useRef();
 
   const passwordRef = useRef();
@@ -20,11 +19,7 @@ const Auth = () => {
 
   const register = async (username, email, password) => {
     try {
-      const { userId, errors } = await guestBookApi.register(
-        username,
-        email,
-        password,
-      );
+      const { errors } = await guestBookApi.register(username, email, password);
       if (errors) {
         setFormErrors((prevState) => [...prevState, ...errors]);
       }
@@ -63,7 +58,6 @@ const Auth = () => {
     const password = passwordRef.current.value;
 
     const errors = [];
-    // const errors = validateUser({ username, email, password });
 
     if (errors.length > 0) {
       setFormErrors(errors);

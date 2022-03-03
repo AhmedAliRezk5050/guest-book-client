@@ -193,6 +193,7 @@ const Message = ({ messageInfo }) => {
                   id='edit_text'
                   className={styles.formInput}
                   ref={messageRef}
+                  defaultValue={content}
                 />
               </div>
               <div className={styles.btnWrapper}>
