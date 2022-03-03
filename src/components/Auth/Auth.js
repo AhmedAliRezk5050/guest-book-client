@@ -62,7 +62,8 @@ const Auth = () => {
 
     const password = passwordRef.current.value;
 
-    const errors = validateUser({ username, email, password });
+    const errors = [];
+    // const errors = validateUser({ username, email, password });
 
     if (errors.length > 0) {
       setFormErrors(errors);
