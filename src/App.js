@@ -1,4 +1,3 @@
-import './App.css';
 import Main from './components/Main/Main';
 import AuthProvider from './context/auth/AuthProvider';
 import MessagesProvider from './context/auth/MessagesProvider';
