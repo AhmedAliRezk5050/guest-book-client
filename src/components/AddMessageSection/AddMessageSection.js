@@ -9,7 +9,7 @@ const AddMessageSection = () => {
   const messageRef = useRef();
 
   const { state, dispatch } = useAuthContext();
-  const { messagesState, dispatch: messagesDispatch } = useMessagesContext();
+  const { dispatch: messagesDispatch } = useMessagesContext();
 
   const createMessage = async (username, content) => {
     try {
@@ -50,10 +50,7 @@ const AddMessageSection = () => {
       return;
     }
 
-    const { newMessageId, errors } = await createMessage(
-      state.userData.username,
-      message,
-    );
+    const { errors } = await createMessage(state.userData.username, message);
     messageRef.current.value = '';
     await fetchMessages();
     if (!errors) {

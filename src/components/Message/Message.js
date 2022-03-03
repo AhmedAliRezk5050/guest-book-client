@@ -14,7 +14,7 @@ const Message = ({ messageInfo }) => {
 
   const [showReplies, setShowReplies] = useState(false);
 
-  const { state, dispatch } = useMessagesContext();
+  const { dispatch } = useMessagesContext();
 
   const { state: userInfo } = useAuthContext();
 
@@ -80,11 +80,7 @@ const Message = ({ messageInfo }) => {
       return;
     }
 
-    const { updatedMessageId, errors } = await updateMessage(
-      id,
-      username,
-      editMessage,
-    );
+    const { errors } = await updateMessage(id, username, editMessage);
 
     if (!errors) {
       await fetchMessages();

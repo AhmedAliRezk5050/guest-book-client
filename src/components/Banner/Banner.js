@@ -1,10 +1,13 @@
 import styles from './Banner.module.css';
-import proposalImg from './proposal.jpg';
 
 const Banner = () => {
   return (
     <header className={styles.header}>
-      <img src={proposalImg} alt='proposal' className={styles.img} />
+      <img
+        src='https://www.tvinsider.com/wp-content/uploads/2018/01/18-06-5334-1014x570.jpg'
+        alt='proposal'
+        className={styles.img}
+      />
       <h1 className={styles.title}>
         <span>Chandler & Monica</span>
         <span className={styles.subtitle}>wedding</span>
