@@ -80,7 +80,11 @@ const Auth = () => {
       setLoading(false);
       if (userData) {
         dispatch({ type: 'SET_USER', payload: userData });
-        localStorage.setItem('userData', JSON.stringify(userData));
+        try {
+          localStorage.setItem('userData', JSON.stringify(userData));
+        } catch (error) {
+          alert('local storage is not supported on iphone');
+        }
       }
     }
   };

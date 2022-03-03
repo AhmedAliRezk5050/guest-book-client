@@ -25,7 +25,11 @@ const Main = () => {
           className={styles.logout}
           onClick={() => {
             dispatch({ type: 'REMOVE_USER' });
-            localStorage.removeItem('userData');
+            try {
+              localStorage.removeItem('userData');
+            } catch (error) {
+              alert('local storage is not supported on iphone');
+            }
           }}
         >
           Logout
