@@ -1,17 +1,15 @@
 .header {
-  /* min-height: 50vh; */
-  /* height: 50vh; */
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
 }
 
 .imgWrapper {
-  /* height: 75%; */
 }
 
 .img {
   width: 100%;
-  max-height: 40rem;
+  height: 60vh;
   display: block;
   object-fit: cover;
   object-position: center;

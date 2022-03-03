@@ -3,6 +3,7 @@
   /* min-height: 100vh; */
   background-color: var(--color-10);
   padding-bottom: 3rem;
+  max-width: 90rem;
 }
 
 .logout {
