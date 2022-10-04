@@ -24,7 +24,6 @@ const Auth = () => {
         setFormErrors((prevState) => [...prevState, ...errors]);
       }
     } catch (error) {
-      console.log(error);
       setFormErrors((prevState) => [...prevState, 'Failed to register']);
     }
   };
