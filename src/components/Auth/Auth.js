@@ -3,6 +3,7 @@ import styles from './Auth.module.css';
 
 import guestBookApi from '../../api/guest-book';
 import { useAuthContext } from '../../context/auth/AuthProvider';
+import {validateUser} from "../../helpers/validation";
 
 const Auth = () => {
   const usernameRef = useRef();
@@ -56,7 +57,7 @@ const Auth = () => {
 
     const password = passwordRef.current.value;
 
-    const errors = [];
+    const errors = validateUser({ username, email, password });
 
     if (errors.length > 0) {
       setFormErrors(errors);
